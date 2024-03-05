@@ -25,7 +25,7 @@ COMPILE = $(CC) $(CFLAGS) $(INC) $(DEFINES)
 
 all: $(BIN)
 
-$(BUILD_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) Makefile
+$(BUILD_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT)
 	@echo 'Building project file: $<'
 	@mkdir -p $(dir $@)
 	@$(COMPILE) -c -o "$@" "$<"
@@ -37,3 +37,6 @@ $(BIN): $(OBJ)
 
 clean:
 	rm -rf $(WORKING_DIR)
+
+run: $(BIN)
+	$(BIN)

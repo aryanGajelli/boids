@@ -3,7 +3,13 @@
 
 
 #include <stdint.h>
-constexpr uint16_t HEIGHT = 600;
-constexpr uint16_t WIDTH = 800;
+#include "structs.h"
+
+#define HEIGHT (600)
+#define WIDTH (800)
+
+#define APP_NAME ("Boids")
+
+extern App app;
 
 #endif // __CFG_H__
