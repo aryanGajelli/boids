@@ -42,7 +42,7 @@ void updateBoid(Boid *t) {
 
 void align(Boid *t) {
     static const float ALIGN_RADIUS = 50;
-    static const float MAX_FORCE = 0.01;
+    static const float MAX_FORCE = 0.1;
     SDL_FPoint steer = {0, 0};
     int total = 0;
     for (int i = 0; i < NUM_BOIDS; i++) {
@@ -71,7 +71,7 @@ void align(Boid *t) {
 
 void cohesion(Boid *t){
     static const float COHESION_RADIUS = 100;
-    static const float MAX_FORCE = 0.2;
+    static const float MAX_FORCE = 0.1;
     SDL_FPoint steer = {0, 0};
     int total = 0;
     for (int i = 0; i < NUM_BOIDS; i++) {
@@ -102,7 +102,7 @@ void cohesion(Boid *t){
 
 void separation(Boid *t){
     static const float SEPARATION_RADIUS = 30;
-    static const float MAX_FORCE = 1;
+    static const float MAX_FORCE = 0.5;
     SDL_FPoint steer = {0, 0};
     int total = 0;
     for (int i = 0; i < NUM_BOIDS; i++) {
