@@ -9,11 +9,11 @@ BIN_DIR	:= $(WORKING_DIR)/bin
 
 SRC_EXT := c
 OBJ_EXT	:= o
-DEFINES := -DSDL_MAIN_HANDLED
+DEFINES := -DSDL_MAIN_HANDLED -D_USE_MATH_DEFINES 
 
 CC := gcc
 CFLAGS := -std=c2x -g -Wall
-LDLIBS := -L/mingw64/lib -lmingw32 -lSDL2main -lSDL2  -lSDL2_image #-lSDL2_ttf -lSDL2_mixer
+LDLIBS := -L/mingw64/lib -lmingw32 -lSDL2main -lSDL2  -lSDL2_image -lSDL2_gfx -lgsl #-lSDL2_ttf -lSDL2_mixer
 
 
 INC := -I$(INC_DIR) -I/mingw64/include/SDL2 #-I/usr/include/SDL2_image -I/usr/include/SDL2_ttf -I/usr/include/SDL2_mixer

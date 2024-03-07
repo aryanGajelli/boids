@@ -21,7 +21,7 @@ void initSDL() {
     app.win = SDL_CreateWindow(APP_NAME, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, windowFlags);
 
     if (!app.win) {
-        printf("Failed to open %d x %d window: %s\n", WIDTH, HEIGHT, SDL_GetError());
+        printf("Failed to open %f x %f window: %s\n", WIDTH, HEIGHT, SDL_GetError());
         exit(1);
     }
 

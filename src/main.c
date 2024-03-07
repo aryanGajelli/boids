@@ -4,33 +4,46 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
+#include "boid.h"
 #include "cfg.h"
 #include "draw.h"
 #include "init.h"
 #include "input.h"
 
 App app;
+SDL_Texture* boidTex;
+Boid boids[NUM_BOIDS];
+
 int main(int argc, char* argv[]) {
     memset(&app, 0, sizeof(App));
+    srand(time(NULL));
 
     initSDL();
     initDraw();
+    initBoids();
     atexit(cleanupSDL);
 
     while (1) {
-        uint64_t start = SDL_GetPerformanceCounter();
+        Uint32 start = SDL_GetPerformanceCounter();
         prepareScene();
         processEvents();
-
+        for (int i = 0; i < NUM_BOIDS; i++) {
+            flock(&boids[i]);
+            updateBoid(&boids[i]);
+            drawBoid(&boids[i]);
+        }
         presentScene();
-        
 
-        SDL_Delay(5);
-        uint64_t end = SDL_GetPerformanceCounter();
+        // SDL_framerateDelay(&fpsm);
+        Uint32 end = SDL_GetPerformanceCounter();
         double elapsed = (end - start) / (double)SDL_GetPerformanceFrequency();
-
-        // printf("FPS: %lf\n", 1 / elapsed);
+        while (elapsed < 1.0 / FPS){
+            end = SDL_GetPerformanceCounter();
+            elapsed = (end - start) / (double)SDL_GetPerformanceFrequency();
+        }
+        printf("Render time: %fms\n", elapsed * 1000.0);
     }
 
     return 0;

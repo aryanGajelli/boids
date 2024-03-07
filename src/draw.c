@@ -1,34 +1,35 @@
 #include "draw.h"
 
 #include <SDL.h>
+#include <SDL2_gfxPrimitives.h>
+#include <SDL_image.h>
 #include <SDL_render.h>
+#include <math.h>
+// #include <gl.h>
 
+#include <stdlib.h>
+
+#include "boid.h"
 #include "cfg.h"
 #include "structs.h"
 
-Triangle t;
 void initDraw(void) {
-    t = (Triangle){
-        .a = {320, 100},
-        .b = {100, 540},
-        .c = {540, 540}};
+    boidTex = IMG_LoadTexture(app.renderer, "./assets/boid.png");
+    if (boidTex == NULL) {
+        printf("Error creating texture: %s\n", SDL_GetError());
+        exit(1);
+    }
+    SDL_SetTextureAlphaMod(boidTex, 0xdf);
+    // SDL_SetTextureBlendMode(boidTex, SDL_BLENDFACTOR_SRC_ALPHA);
 }
 
 void prepareScene(void) {
     // next 2 lines are basically a background color refresh
     SDL_SetRenderDrawColor(app.renderer, 0x3a, 0x3a, 0x3a, 0xff);
     SDL_RenderClear(app.renderer);
-
-    SDL_SetRenderDrawColor(app.renderer, 0xff, 0xff, 0xff, 0xff);
-    drawTriangle(&t);
+    // rotateTriangle(&t, angle);
 }
 
 void presentScene(void) {
     SDL_RenderPresent(app.renderer);
-}
-
-void drawTriangle(Triangle *t) {
-    SDL_RenderDrawLine(app.renderer, t->a.x, t->a.y, t->b.x, t->b.y);
-    SDL_RenderDrawLine(app.renderer, t->b.x, t->b.y, t->c.x, t->c.y);
-    SDL_RenderDrawLine(app.renderer, t->c.x, t->c.y, t->a.x, t->a.y);
 }
