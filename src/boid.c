@@ -9,19 +9,20 @@
 #include "util.h"
 
 void initBoids(void) {
+    float maxInitVel = 3;
     for (int i = 0; i < NUM_BOIDS; i++) {
         boids[i].pos.x = randFloat(0, WIDTH);
         boids[i].pos.y = randFloat(0, HEIGHT);
-        boids[i].vel.x = randFloat(-1, 1);
-        boids[i].vel.y = randFloat(-1, 1);
+        boids[i].vel.x = randFloat(-maxInitVel, maxInitVel);
+        boids[i].vel.y = randFloat(-maxInitVel, maxInitVel);
         boids[i].acc.x = 0;
         boids[i].acc.y = 0;
-        boids[i].angle = 0;
+        boids[i].angle = atan2(boids[i].vel.y, boids[i].vel.x) * 180 / M_PI + 90;
     }
 }
 
 void drawBoid(Boid *t) {
-    static SDL_FRect dst = {.w = 30, .h = 40};
+    static SDL_FRect dst = {.w = 10, .h = 25};
     dst.x = t->pos.x - dst.w / 2;
     dst.y = t->pos.y - dst.h / 2;
     SDL_RenderCopyExF(app.renderer, boidTex, NULL, &dst, t->angle, NULL, SDL_FLIP_NONE);
