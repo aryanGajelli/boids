@@ -6,7 +6,7 @@
 #include "structs.h"
 
 #define HEIGHT (800.)
-#define WIDTH (1000.)
+#define WIDTH (1200.)
 
 #define APP_NAME ("Boids")
 extern App app;

@@ -11,7 +11,7 @@ typedef struct Boid {
 } Boid;
 
 extern SDL_Texture* boidTex;
-#define NUM_BOIDS (300)
+#define NUM_BOIDS (1000)
 extern Boid boids[NUM_BOIDS];
 
 void initBoids(void);
