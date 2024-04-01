@@ -20,14 +20,12 @@ void initDraw(void) {
         exit(1);
     }
     SDL_SetTextureAlphaMod(boidTex, 0xdf);
-    // SDL_SetTextureBlendMode(boidTex, SDL_BLENDFACTOR_SRC_ALPHA);
 }
 
 void prepareScene(void) {
     // next 2 lines are basically a background color refresh
     SDL_SetRenderDrawColor(app.renderer, 0x3a, 0x3a, 0x3a, 0xff);
     SDL_RenderClear(app.renderer);
-    // rotateTriangle(&t, angle);
 }
 
 void presentScene(void) {

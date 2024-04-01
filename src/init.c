@@ -25,7 +25,7 @@ void initSDL() {
         exit(1);
     }
 
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
     app.renderer = SDL_CreateRenderer(app.win, -1, rendererFlags);
 

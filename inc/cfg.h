@@ -11,6 +11,8 @@
 #define APP_NAME ("Boids")
 extern App app;
 
-#define FPS (100.)
+#define FPS (10000)
+
+extern double dT;
 
 #endif // __CFG_H__
